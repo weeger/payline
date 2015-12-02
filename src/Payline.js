@@ -280,8 +280,44 @@ export default class Payline {
                 if (isSuccessful(response.result)) {
                     return response;
                 } else {
-                    throw result;
+                    throw response;
                 }
+            }, parseErrors);
+    }
+
+    getWebPaymentDetails(token) {
+        var body = {
+            token: token,
+            media: {}
+        };
+        return this.initialize()
+            .then(client => Promise.fromNode(callback => {
+                client.doWebPayment(body, callback);
+            }))
+            .spread(response => {
+                if (response.result && [
+                        // Canceled.
+                        '02319',
+                        // Not redirected.
+                        '02533',
+                        // Canceled by user.
+                        '02536',
+                        // User fill payment data.
+                        '02306',
+                        // Not redirected.
+                        '02534',
+                        // Session expired.
+                        '02324',
+                        // Payment OK or KO
+                        '00000'
+                    ].indexOf(response.result.code) !== -1) {
+                    return response;
+                }
+                else {
+                    // Unknown or error.
+                    throw response;
+                }
+
             }, parseErrors);
     }
 }
