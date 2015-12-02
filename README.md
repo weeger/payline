@@ -54,6 +54,22 @@ payline.doWebPayment(123, 'A-PAY-TEST', '20/06/2015 20:21', 'http://www.wexample
   });
 ```
 
+Then, check payment status
+
+``` javascript
+// Check if payment has been done.
+payline.getWebPaymentDetails(yourPaymentToken)
+  .then(function (result) {
+    if (result.code === '00000') {
+      console.log('Wahou! Operation complete...');
+    }
+    else {
+      console.log('Operation not finished, see result code for more details...');
+    }
+    console.log(result);
+  });
+```
+
 ## API
 
 ##### `new Payline(userId, userPass, contractNumber) -> instance`

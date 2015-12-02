@@ -1,6 +1,6 @@
 {
   "name": "payline-weeger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "NodeJS SDK for payline.com API",
   "main": "index.js",
   "scripts": {
