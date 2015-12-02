@@ -287,12 +287,11 @@ export default class Payline {
 
     getWebPaymentDetails(token) {
         var body = {
-            token: token,
-            media: {}
+            token: token
         };
         return this.initialize()
             .then(client => Promise.fromNode(callback => {
-                client.doWebPayment(body, callback);
+                client.getWebPaymentDetails(body, callback);
             }))
             .spread(response => {
                 if (response.result && [
