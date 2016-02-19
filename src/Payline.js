@@ -247,7 +247,7 @@ export default class Payline {
             }, parseErrors);
     }
 
-    doWebPayment(amount, ref, date, returnURL, cancelURL, currency = CURRENCIES.EUR) {
+    doWebPayment(amount, ref, date, returnURL, cancelURL, selectedContractList, currency = CURRENCIES.EUR) {
 
         var body = {
             payment: {
@@ -268,7 +268,7 @@ export default class Payline {
                 // Format : 20/06/2015 20:21
                 date: date
             },
-            selectedContractList: null,
+            selectedContractList: selectedContractList,
             buyer: {}
         };
 
