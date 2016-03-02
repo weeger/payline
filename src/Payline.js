@@ -247,7 +247,7 @@ export default class Payline {
             }, parseErrors);
     }
 
-    doWebPayment(amount, ref, date, returnURL, cancelURL, selectedContractList, currency = CURRENCIES.EUR) {
+    doWebPayment(amount, ref, date, returnURL, cancelURL, selectedContractList, buyer = {}, currency = CURRENCIES.EUR) {
 
         var body = {
             payment: {
@@ -269,7 +269,7 @@ export default class Payline {
                 date: date
             },
             selectedContractList: selectedContractList,
-            buyer: {}
+            buyer: buyer
         };
 
         return this.initialize()
