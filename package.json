@@ -1,6 +1,6 @@
 {
   "name": "payline-lvelours",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "NodeJS SDK for payline.com API",
   "main": "index.js",
   "scripts": {
