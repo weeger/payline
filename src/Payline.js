@@ -268,8 +268,14 @@ export default class Payline {
                 // Format : 20/06/2015 20:21
                 date: date
             },
-            selectedContractList: selectedContractList,
-            buyer: buyer
+            selectedContractList: {
+                attributes: ns('selectedContractList'),
+                $value: selectedContractList
+            },
+            buyer: {
+                attributes: ns('buyer'),
+                $value: buyer
+            }
         };
 
         return this.initialize()
