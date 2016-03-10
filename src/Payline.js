@@ -5,6 +5,7 @@ import path from 'path';
 const debug = debugLib('payline');
 
 const DEFAULT_WSDL = path.join(__dirname, 'WebPaymentAPI.v4.44.wsdl');
+const PROD_WSDL = path.join(__dirname, 'WebPaymentAPI.v4.44.prod.wsdl');
 const MIN_AMOUNT = 100;
 const ACTIONS = {
     AUTHORIZATION: 100,
@@ -31,7 +32,13 @@ const CURRENCIES = {
 
 export default class Payline {
 
-    constructor(user, pass, contractNumber, wsdl = DEFAULT_WSDL) {
+    constructor(user, pass, contractNumber, mode) {
+        var wsdl;
+        if (mode == "prod"){
+            wsdl = PROD_WSDL;
+         }else{
+            wsdl = DEFAULT_WSDL;
+         }
         if (!user || !pass || !contractNumber) {
             throw new Error('All of user / pass / contractNumber should be defined');
         }
