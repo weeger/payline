@@ -270,7 +270,7 @@ export default class Payline {
             },
             selectedContractList: {
                 attributes: ns('selectedContractList'),
-                selectedContract: selectedContract
+                $xml: selectedContract
             },
             buyer: {
                 attributes: ns('buyer'),
