@@ -1,4 +1,4 @@
-import soap from 'soap';
+import soap from 'soap-lvelours';
 import Promise from 'bluebird';
 import debugLib from 'debug';
 import path from 'path';
