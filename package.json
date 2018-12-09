@@ -1,6 +1,6 @@
 {
-  "name": "payline-weeger",
-  "version": "0.0.6",
+  "name": "payline-lvelours",
+  "version": "0.1.3",
   "description": "NodeJS SDK for payline.com API",
   "main": "index.js",
   "scripts": {
@@ -8,17 +8,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish": "gulp dist"
   },
-  "homepage": "https://github.com/weeger/payline",
+  "homepage": "https://github.com/lvelours/payline",
   "repository": {
     "type": "git",
-    "url": "git://github.com/weeger/payline.git"
+    "url": "git://github.com/lvelours/payline.git"
   },
-  "author": "Cubyn",
+  "author": "Cubyn / LVelours",
   "license": "MIT",
   "dependencies": {
     "bluebird": "2.10.x",
     "debug": "2.2.x",
-    "soap": "^0.9.x"
+    "soap-lvelours": ">=0.9.6"
   },
   "devDependencies": {
     "babel": "^5.8.23",

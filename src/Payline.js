@@ -1,10 +1,11 @@
-import soap from 'soap';
+import soap from 'soap-lvelours';
 import Promise from 'bluebird';
 import debugLib from 'debug';
 import path from 'path';
 const debug = debugLib('payline');
 
 const DEFAULT_WSDL = path.join(__dirname, 'WebPaymentAPI.v4.44.wsdl');
+const PROD_WSDL = path.join(__dirname, 'WebPaymentAPI.v4.44.prod.wsdl');
 const MIN_AMOUNT = 100;
 const ACTIONS = {
     AUTHORIZATION: 100,
@@ -31,7 +32,13 @@ const CURRENCIES = {
 
 export default class Payline {
 
-    constructor(user, pass, contractNumber, wsdl = DEFAULT_WSDL) {
+    constructor(user, pass, contractNumber, mode) {
+        var wsdl;
+        if (mode == "prod"){
+            wsdl = PROD_WSDL;
+         }else{
+            wsdl = DEFAULT_WSDL;
+         }
         if (!user || !pass || !contractNumber) {
             throw new Error('All of user / pass / contractNumber should be defined');
         }
@@ -247,7 +254,7 @@ export default class Payline {
             }, parseErrors);
     }
 
-    doWebPayment(amount, ref, date, returnURL, cancelURL, selectedContractList, currency = CURRENCIES.EUR) {
+    doWebPayment(amount, ref, date, returnURL, cancelURL, selectedContract, emailBuyer = "", currency = CURRENCIES.EUR) {
 
         var body = {
             payment: {
@@ -268,8 +275,14 @@ export default class Payline {
                 // Format : 20/06/2015 20:21
                 date: date
             },
-            selectedContractList: selectedContractList,
-            buyer: {}
+            selectedContractList: {
+                attributes: ns('selectedContractList'),
+                $xml: selectedContract
+            },
+            buyer: {
+                attributes: ns('buyer'),
+                email: emailBuyer
+            }
         };
 
         return this.initialize()
